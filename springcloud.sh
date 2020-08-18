@@ -135,14 +135,14 @@ function main(){
 case $1 in
         dev)
         if hostname|grep -E -q 'devops';then
-                Docker_exec_build $* && ansible dev --key-file="/var/lib/hudson/.ssh/id_rsa"  -m command  -a "file.sh dev $i"
+                Docker_exec_build $* && ansible dev --key-file="/var/lib/hudson/.ssh/id_rsa"  -m command  -a "springcloud.sh dev $i"
         else
                 Docker_exec_run $*
         fi
         ;;
         test)
         if hostname|grep -E -q 'devops';then
-                Docker_exec_build $* && ansible test --key-file="/var/lib/hudson/.ssh/id_rsa"  -m command  -a "file.sh test $i"
+                Docker_exec_build $* && ansible test --key-file="/var/lib/hudson/.ssh/id_rsa"  -m command  -a "springcloud.sh test $i"
         else
                 Docker_exec_run $*
         fi
