@@ -28,7 +28,7 @@ Example(3): $0 pre  push       appname.test
 EOF
 }
 #------------------- spring cloud env ------------------
-function filo_registry(){
+function springcloud_registry(){
 export  Dev_registry="172.21.0.11:5000/"
 export  Test_registry="172.21.0.11:5000/"
 export  Demo_registry="172.21.0.11:5000/"
@@ -58,9 +58,6 @@ do
                 cp /data0/springcloud/pkg/mycat-web.tar.gz /data0/springcloud/temp/
         elif [[ $i == "select.apro" ]] ;then
                         cp /data0/springcloud/dev/aws_db_select/database.sql /data0/springcloud/temp/
-        elif [[ $i == "apidoc.test" ]] ;then
-                        svn co  http://172.21.0.11/repos/filodata/document/IT/GitBook/Import /data0/springcloud/temp/Import
-                        cp /data0/springcloud/conf/$workdir/$i temp/ && cd temp
         elif [[ $i == "eureka.pro" ]] ;then
                 mkdir -p  /data0/backupfile/$i/$update_time && /bin/cp $images /data0/backupfile/$i/$update_time/
                 mv $images /data0/springcloud/temp/ && cp /data0/springcloud/conf/$workdir/$i temp/ && cd temp
@@ -188,7 +185,7 @@ esac
 workdir=$1
 Runenv=$1
 Date=`date +%Y%m%d%H%M`
-filo_registry
+springcloud_registry
 
 if hostname |grep -E -q 'devops';then
         cd  /data0/springcloud/ || echo "Please check /data0/springcloud/, path is no exist"
